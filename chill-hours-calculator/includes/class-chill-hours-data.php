@@ -38,7 +38,10 @@ class Chill_Hours_Data {
      * @return array|false Chill hours data or false if not found.
      */
     public function get_chill_hours_by_zip($zip_code) {
+        error_log('Searching for ZIP code: ' . $zip_code);
+        error_log('CSV file path: ' . $this->csv_file);
         if (empty($this->csv_file) || !file_exists($this->csv_file)) {
+            error_log('CSV file not found or path empty');
             return false;
         }
 

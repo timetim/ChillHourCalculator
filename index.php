@@ -257,6 +257,7 @@ echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>' . PHP
 
 // Handle AJAX requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'get_chill_hours') {
+    error_log('POST request received: ' . print_r($_POST, true));
     require_once 'chill-hours-calculator/includes/class-chill-hours-data.php';
     $data_handler = new Chill_Hours_Data();
     $chill_hours = $data_handler->get_chill_hours_by_zip($_POST['zip_code']);

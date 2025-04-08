@@ -9,9 +9,11 @@
         // Form submission handler
         $('#chill-hours-form').on('submit', function(e) {
             e.preventDefault();
+            console.log('Form submitted');
             
             // Get ZIP code
             var zipCode = $('#zip-code').val().trim();
+            console.log('ZIP code:', zipCode);
             
             // Validate ZIP code format
             if (!validateZipCode(zipCode)) {
@@ -26,6 +28,7 @@
             $('#chill-hours-results').hide();
             $('#chill-hours-error').hide();
             
+            console.log('Sending AJAX request');
             // Send AJAX request
             $.ajax({
                 url: window.location.href,
@@ -33,6 +36,9 @@
                 data: {
                     action: 'get_chill_hours',
                     zip_code: zipCode
+                },
+                beforeSend: function() {
+                    console.log('AJAX request starting');
                 },
                 success: function(response) {
                     hideLoading();
