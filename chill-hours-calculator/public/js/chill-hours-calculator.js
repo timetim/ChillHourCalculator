@@ -1,3 +1,4 @@
+
 /**
  * Chill Hours Calculator frontend JavaScript
  */
@@ -27,20 +28,23 @@
             
             // Send AJAX request
             $.ajax({
-                url: chillHoursAjax.ajax_url,
+                url: window.location.href,
                 type: 'POST',
                 data: {
                     action: 'get_chill_hours',
-                    zip_code: zipCode,
-                    security: chillHoursAjax.nonce
+                    zip_code: zipCode
                 },
                 success: function(response) {
                     hideLoading();
-                    
-                    if (response.success) {
-                        displayResults(response.data);
-                    } else {
-                        showError(response.data.message || 'An error occurred while retrieving chill hours data.');
+                    try {
+                        response = JSON.parse(response);
+                        if (response.success) {
+                            displayResults(response.data);
+                        } else {
+                            showError(response.data.message || 'An error occurred while retrieving chill hours data.');
+                        }
+                    } catch(e) {
+                        showError('Invalid response from server.');
                     }
                 },
                 error: function() {
@@ -50,17 +54,11 @@
             });
         });
         
-        /**
-         * Validate ZIP code format
-         */
         function validateZipCode(zipCode) {
             var zipRegex = /^\d{5}(-\d{4})?$/;
             return zipRegex.test(zipCode);
         }
         
-        /**
-         * Display error message
-         */
         function showError(message) {
             $('#error-message').text(message);
             $('#chill-hours-error').show();
@@ -68,25 +66,16 @@
             $('#chill-hours-loading').hide();
         }
         
-        /**
-         * Display loading indicator
-         */
         function showLoading() {
             $('#chill-hours-loading').show();
             $('#chill-hours-results').hide();
             $('#chill-hours-error').hide();
         }
         
-        /**
-         * Hide loading indicator
-         */
         function hideLoading() {
             $('#chill-hours-loading').hide();
         }
         
-        /**
-         * Display chill hours results
-         */
         function displayResults(data) {
             // Update ZIP code display
             $('#result-zip-code').text(data.zip_code);

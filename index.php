@@ -255,6 +255,41 @@ if (isset($_POST['action']) && $_POST['action'] === 'get_chill_hours') {
 // Include jQuery for the form to work
 echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>' . PHP_EOL;
 
+// Handle AJAX requests
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'get_chill_hours') {
+    require_once 'chill-hours-calculator/includes/class-chill-hours-data.php';
+    $data_handler = new Chill_Hours_Data();
+    $chill_hours = $data_handler->get_chill_hours_by_zip($_POST['zip_code']);
+    
+    if ($chill_hours === false) {
+        echo json_encode(['success' => false, 'data' => ['message' => 'No data found for this ZIP code.']]);
+    } else {
+        $settings = get_option('chill_hours_calculator_settings', []);
+        echo json_encode([
+            'success' => true,
+            'data' => [
+                'zip_code' => $_POST['zip_code'],
+                'method1' => [
+                    'name' => isset($settings['method_1_name']) ? $settings['method_1_name'] : 'Utah Model',
+                    'description' => isset($settings['method_1_description']) ? $settings['method_1_description'] : 'Hours between 32°F and 45°F',
+                    'value' => $chill_hours['method1']
+                ],
+                'method2' => [
+                    'name' => isset($settings['method_2_name']) ? $settings['method_2_name'] : 'California Model',
+                    'description' => isset($settings['method_2_description']) ? $settings['method_2_description'] : 'Hours below 45°F',
+                    'value' => $chill_hours['method2']
+                ],
+                'method3' => [
+                    'name' => isset($settings['method_3_name']) ? $settings['method_3_name'] : 'Dynamic Model',
+                    'description' => isset($settings['method_3_description']) ? $settings['method_3_description'] : 'Weighted approach based on temperature thresholds',
+                    'value' => $chill_hours['method3']
+                ]
+            ]
+        ]);
+    }
+    exit;
+}
+
 // Include the plugin
 require_once 'chill-hours-calculator/chill-hours-calculator.php';
 
