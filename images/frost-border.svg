@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="100" viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#6eb5ff" stroke-width="2" fill="none">
+    <!-- Frost crystal 1 -->
+    <path d="M50,20 L50,80 M30,50 L70,50 M35,35 L65,65 M35,65 L65,35" stroke-opacity="0.6"/>
+    
+    <!-- Frost crystal 2 -->
+    <path d="M150,20 L150,80 M130,50 L170,50 M135,35 L165,65 M135,65 L165,35" stroke-opacity="0.4"/>
+    
+    <!-- Frost crystal 3 -->
+    <path d="M250,20 L250,80 M230,50 L270,50 M235,35 L265,65 M235,65 L265,35" stroke-opacity="0.7"/>
+    
+    <!-- Frost crystal 4 -->
+    <path d="M350,20 L350,80 M330,50 L370,50 M335,35 L365,65 M335,65 L365,35" stroke-opacity="0.5"/>
+    
+    <!-- Frost crystal 5 -->
+    <path d="M450,20 L450,80 M430,50 L470,50 M435,35 L465,65 M435,65 L465,35" stroke-opacity="0.6"/>
+    
+    <!-- Frost crystal 6 -->
+    <path d="M550,20 L550,80 M530,50 L570,50 M535,35 L565,65 M535,65 L565,35" stroke-opacity="0.4"/>
+    
+    <!-- Frost crystal 7 -->
+    <path d="M650,20 L650,80 M630,50 L670,50 M635,35 L665,65 M635,65 L665,35" stroke-opacity="0.7"/>
+    
+    <!-- Frost crystal 8 -->
+    <path d="M750,20 L750,80 M730,50 L770,50 M735,35 L765,65 M735,65 L765,35" stroke-opacity="0.5"/>
+    
+    <!-- Frost crystal 9 -->
+    <path d="M850,20 L850,80 M830,50 L870,50 M835,35 L865,65 M835,65 L865,35" stroke-opacity="0.6"/>
+    
+    <!-- Frost crystal 10 -->
+    <path d="M950,20 L950,80 M930,50 L970,50 M935,35 L965,65 M935,65 L965,35" stroke-opacity="0.4"/>
+    
+    <!-- Connecting frost lines -->
+    <path d="M70,50 C90,30 110,70 130,50" stroke-opacity="0.3"/>
+    <path d="M170,50 C190,30 210,70 230,50" stroke-opacity="0.3"/>
+    <path d="M270,50 C290,30 310,70 330,50" stroke-opacity="0.3"/>
+    <path d="M370,50 C390,30 410,70 430,50" stroke-opacity="0.3"/>
+    <path d="M470,50 C490,30 510,70 530,50" stroke-opacity="0.3"/>
+    <path d="M570,50 C590,30 610,70 630,50" stroke-opacity="0.3"/>
+    <path d="M670,50 C690,30 710,70 730,50" stroke-opacity="0.3"/>
+    <path d="M770,50 C790,30 810,70 830,50" stroke-opacity="0.3"/>
+    <path d="M870,50 C890,30 910,70 930,50" stroke-opacity="0.3"/>
+  </g>
+</svg>
