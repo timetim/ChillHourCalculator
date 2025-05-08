@@ -15,10 +15,10 @@
 </head>
 <body>
     <div class="chill-hours-calculator">
-        <h1>Chill Hours Calculator Demo</h1>
+        <h1>Chill Hours Calculator <span class="icon-leaf">🌿</span></h1>
         
         <div class="chill-hours-form">
-            <h3>Find Your Chill Hours</h3>
+            <h3>Find Your Chill Hours <span class="icon-snowflake">❄️</span></h3>
             <p>Enter your ZIP code to calculate your local chill hours using three different methods.</p>
             
             <form id="chill-hours-form" action="direct-form.php" method="get">

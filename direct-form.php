@@ -83,92 +83,141 @@ $method_descriptions = array(
 <html>
 <head>
     <title>Chill Hours Results</title>
+    <link rel="stylesheet" href="chill-hours-calculator/public/css/chill-hours-calculator.css">
+    <link rel="stylesheet" href="custom.css">
     <style>
+        /* Additional styles specific to results page */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            max-width: 800px;
+            padding: 20px;
         }
-        h1 {
-            color: #333;
+        
+        .page-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            border-top: 5px solid #3a7d44;
         }
+        
+        .back-link {
+            margin-top: 30px;
+            display: inline-block;
+            color: #3a7d44;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border: 2px solid #3a7d44;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #3a7d44;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .back-link:before {
+            content: "←";
+            margin-right: 8px;
+        }
+        
+        .results-header {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e8f4ea;
+        }
+        
+        .results-header:before {
+            content: "❄";
+            margin-right: 10px;
+            color: #6eb5ff;
+            font-size: 24px;
+        }
+        
         .results-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            margin: 20px 0;
+            margin: 30px 0;
         }
-        .result-method {
-            flex: 1;
-            min-width: 200px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        .result-method h3 {
-            margin-top: 0;
-            color: #2271b1;
-        }
-        .method-description {
-            font-size: 14px;
-            color: #666;
-            min-height: 40px;
-        }
-        .hours-value {
-            font-size: 32px;
-            font-weight: bold;
-            color: #2271b1;
-        }
-        .hours-label {
-            font-size: 14px;
-            color: #666;
-        }
-        .results-explanation {
-            background-color: #f0f6fc;
-            border-left: 4px solid #2271b1;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 0 5px 5px 0;
-        }
-        .back-link {
-            margin-top: 20px;
-        }
+        
         .error {
             color: #721c24;
             background-color: #f8d7da;
-            padding: 10px;
+            padding: 15px;
             border-radius: 5px;
             margin: 20px 0;
+            border-left: 4px solid #721c24;
+        }
+        
+        @media (max-width: 768px) {
+            .results-container {
+                flex-direction: column;
+            }
+            
+            .page-container {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Chill Hours Results for ZIP Code: <?php echo htmlspecialchars($zip_code); ?></h1>
-    
-    <div class="results-container">
-        <?php foreach ($chill_hours as $method => $value): ?>
-            <div class="result-method">
-                <h3><?php echo htmlspecialchars($method_names[$method]); ?></h3>
-                <p class="method-description">
-                    <?php echo htmlspecialchars($method_descriptions[$method]); ?>
-                </p>
-                <div class="hours-value"><?php echo htmlspecialchars($value); ?></div>
-                <div class="hours-label">chill hours</div>
-            </div>
-        <?php endforeach; ?>
+    <div class="page-container">
+        <h1 class="results-header">Chill Hours Results for ZIP Code: <?php echo htmlspecialchars($zip_code); ?></h1>
+        
+        <div class="results-container">
+            <?php foreach ($chill_hours as $method => $value): ?>
+                <div class="result-method">
+                    <h3><?php echo htmlspecialchars($method_names[$method]); ?></h3>
+                    <p class="method-description">
+                        <?php echo htmlspecialchars($method_descriptions[$method]); ?>
+                    </p>
+                    <div class="hours-value"><?php echo htmlspecialchars($value); ?></div>
+                    <div class="hours-label">chill hours</div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        
+        <div class="results-explanation">
+            <h3>About Chill Hours</h3>
+            <p>Chill hours are the number of hours plants are exposed to cold temperatures in winter, 
+            which is essential for proper fruit and flower development in many deciduous crops.</p>
+            
+            <h4>Why Different Methods?</h4>
+            <p>Different calculation methods may be preferred depending on your climate zone and the specific 
+            plants you're growing. The results above show how your location compares using all three common methods.</p>
+            
+            <ul>
+                <li><strong>Utah Model</strong> is best for traditional cold-climate fruits</li>
+                <li><strong>California Model</strong> works well in milder Mediterranean climates</li>
+                <li><strong>Dynamic Model</strong> provides the most accurate results across various climates</li>
+            </ul>
+        </div>
+        
+        <a href="/" class="back-link">Back to Calculator</a>
     </div>
     
-    <div class="results-explanation">
-        <p>Chill hours are the number of hours plants are exposed to cold temperatures in winter, 
-        which is essential for proper fruit and flower development in many crops.</p>
-        <p>Different calculation methods may be preferred depending on your climate and the plants you're growing.</p>
-    </div>
-    
-    <div class="back-link">
-        <a href="/">&laquo; Back to Calculator</a>
-    </div>
+    <script>
+        // Add subtle animation to the results cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultMethods = document.querySelectorAll('.result-method');
+            resultMethods.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
 </body>
 </html>
