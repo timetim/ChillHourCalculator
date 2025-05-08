@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="chill-hours-calculator/public/css/chill-hours-calculator.css">
     <link rel="stylesheet" href="custom.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/custom.js"></script>
 </head>
 <body>
     <div class="chill-hours-calculator">
@@ -21,7 +22,7 @@
             <h3>Find Your Chill Hours <span class="icon-snowflake">❄️</span></h3>
             <p>Enter your ZIP code to calculate your local chill hours using three different methods.</p>
             
-            <form id="chill-hours-form" action="direct-form.php" method="get">
+            <form id="chill-hours-form">
                 <div class="form-group">
                     <label for="zip-code">ZIP Code:</label>
                     <input type="text" id="zip-code" name="zip_code" maxlength="10" placeholder="Enter your 5-digit ZIP code" pattern="\d{5}(-\d{4})?" required>
@@ -32,8 +33,16 @@
                 </div>
             </form>
             
+            <div id="error-message" class="error-message" style="display: none;">
+                <p>Sorry, we don't have chill hours data for the ZIP code you entered. Please try another ZIP code.</p>
+            </div>
+            
+            <div id="loading-message" class="loading-message" style="display: none;">
+                <p>Calculating chill hours...</p>
+            </div>
+            
             <div class="note">
-                <p><strong>Note:</strong> This demo uses sample data for the following ZIP codes: 94040, 90210, 33101, 60601, etc.</p>
+                <p><strong>Note:</strong> This demo uses sample data for the following ZIP codes: 94040, 90210, 33101, 60601, 77001, 20001, etc.</p>
             </div>
         </div>
         
