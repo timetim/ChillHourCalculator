@@ -88,13 +88,19 @@ if ($chill_hours === null) {
 $method_names = [
     'method1' => 'Utah Model',
     'method2' => 'California Model', 
-    'method3' => 'Dynamic Model'
+    'method3' => 'North Carolina Model'
 ];
 
 $method_descriptions = [
     'method1' => 'Hours between 32°F and 45°F',
     'method2' => 'Hours below 45°F',
     'method3' => 'Weighted approach based on temperature thresholds'
+];
+
+$method_crops = [
+    'method1' => 'apples, pears, and cherries',
+    'method2' => 'almonds, peaches, and apricots',
+    'method3' => 'blueberries and mixed fruits'
 ];
 
 // Format the response data

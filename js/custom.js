@@ -21,6 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // Hide previous results if shown
+        const resultsContainer = document.getElementById('results-container');
+        if (resultsContainer) {
+            resultsContainer.style.display = 'none';
+        }
+        
         // Hide any previous error messages
         errorMessage.style.display = 'none';
         
@@ -106,12 +112,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to create a method result card
     function createMethodCard(method) {
+        // Generate a unique CSS class for each method type
+        let methodClass = '';
+        if (method.name.includes('Utah')) {
+            methodClass = 'utah-method';
+        } else if (method.name.includes('North Carolina')) {
+            methodClass = 'nc-method';
+        } else if (method.name.includes('California')) {
+            methodClass = 'ca-method';
+        }
+        
         return `
-            <div class="result-card">
+            <div class="result-card ${methodClass}">
                 <h4>${method.name}</h4>
                 <p class="method-description">${method.description}</p>
                 <div class="hours-value">${method.value}</div>
                 <div class="hours-label">chill hours</div>
+                <p class="method-hint">Commonly used for ${method.crops || 'various fruit trees'}</p>
             </div>
         `;
     }
