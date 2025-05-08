@@ -109,17 +109,20 @@ $response_data = [
     'method1' => [
         'name' => $method_names['method1'],
         'description' => $method_descriptions['method1'],
-        'value' => $chill_hours['method1']
+        'value' => $chill_hours['method1'],
+        'crops' => $method_crops['method1']
     ],
     'method2' => [
         'name' => $method_names['method2'],
         'description' => $method_descriptions['method2'],
-        'value' => $chill_hours['method2']
+        'value' => $chill_hours['method2'],
+        'crops' => $method_crops['method2']
     ],
     'method3' => [
         'name' => $method_names['method3'],
         'description' => $method_descriptions['method3'],
-        'value' => $chill_hours['method3']
+        'value' => $chill_hours['method3'],
+        'crops' => $method_crops['method3']
     ]
 ];
 
